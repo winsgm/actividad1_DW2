@@ -7,19 +7,19 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f8f8f8;
+    background: #f5f5f5;
     color: #333;
 }
 
-/* CONTENEDOR GLOBAL */
+/* CONTENEDOR GLOBAL (CENTRA TODO) */
 .container {
     width: 90%;
     max-width: 1100px;
     margin: 0 auto;
-    text-align: center; /* CENTRA TODO EL CONTENIDO */
+    text-align: center;
 }
 
-/* NAVBAR */
+/* NAVBAR SUPERIOR */
 .navbar {
     background: #111;
     color: white;
@@ -28,8 +28,10 @@ body {
     width: 100%;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
 }
 
+/* LOGO */
 .logo {
     display: flex;
     justify-content: center;
@@ -41,9 +43,11 @@ body {
     font-size: 22px;
 }
 
+/* MENÚ DE NAVEGACIÓN */
 .nav-menu {
     display: flex;
-    justify-content: center;  /* CENTRA MENÚ */
+    justify-content: center;
+    align-items: center;
     gap: 25px;
     list-style: none;
     margin-top: 10px;
@@ -60,18 +64,18 @@ body {
     color: #29a3ff;
 }
 
-/* BOTÓN CONTACTAR */
 .btn-cta {
     padding: 8px 15px;
-    border-radius: 4px;
+    border-radius: 5px;
     background: #29a3ff;
+    transition: .3s;
 }
 
 .btn-cta:hover {
     background: #0078cc;
 }
 
-/* HERO SECTION */
+/* HERO PRINCIPAL */
 .hero {
     padding: 160px 20px 100px;
     background: linear-gradient(135deg, #3a7bd5, #3a6073);
@@ -80,7 +84,7 @@ body {
 
 .hero h1 {
     font-size: 40px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .hero p {
@@ -88,7 +92,7 @@ body {
     margin-bottom: 25px;
 }
 
-/* TARJETAS */
+/* TARJETAS EN HERO */
 .features {
     display: flex;
     justify-content: center;
@@ -101,17 +105,24 @@ body {
     color: #333;
     padding: 20px;
     width: 280px;
-    border-radius: 12px;
-    box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+    border-radius: 14px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.18);
+    transition: 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
 }
 
 /* SECCIONES GENERALES */
 .content-section {
     padding: 90px 20px;
     background: white;
-    margin-top: 40px;
-    border-radius: 12px;
-    box-shadow: 0 5px 12px rgba(0,0,0,0.10);
+    margin: 40px auto;
+    border-radius: 14px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 1100px;
 }
 
 .content-section h2 {
@@ -119,10 +130,16 @@ body {
     font-size: 28px;
 }
 
+.content-section p {
+    font-size: 17px;
+    margin-top: 15px;
+}
+
+/* IMÁGENES CENTRADAS */
 .content-section img {
     display: block;
-    margin: 0 auto 20px; /* CENTRA IMÁGENES */
-    border-radius: 8px;
+    margin: 0 auto 20px;
+    border-radius: 10px;
 }
 
 /* FOOTER */
@@ -131,5 +148,26 @@ body {
     color: white;
     padding: 30px 0;
     margin-top: 40px;
+    text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .feature-card {
+        width: 90%;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .content-section {
+        width: 95%;
+    }
 }
 
