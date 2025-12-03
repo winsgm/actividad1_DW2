@@ -1,23 +1,23 @@
-
-/* ======================================
-   VARIABLES PRINCIPALES
-====================================== */
+/* ================================
+   ESTILOS GENERALES
+================================ */
 :root {
     --bg-main: #0d0d0f;
     --bg-secondary: #131317;
-    --bg-card: rgba(26,26,32,0.85);
+    --bg-card: #1a1a20;
     --text-primary: #f2f2f2;
     --text-secondary: #c7c7d1;
-    --accent1: #ff6ec7;
-    --accent2: #6e8cff;
-    --accent3: #4dffdf;
+    --accent: #7b3ff2;
+
     --radius: 14px;
     --transition: 0.3s ease;
+
+    /* Colores RGB suaves */
+    --rgb1: #ff6ec7;
+    --rgb2: #6e8cff;
+    --rgb3: #4dffdf;
 }
 
-/* ======================================
-   RESET GENERAL
-====================================== */
 * {
     margin: 0;
     padding: 0;
@@ -25,41 +25,26 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
     background: var(--bg-main);
+    font-family: 'Inter', sans-serif;
     color: var(--text-primary);
     line-height: 1.7;
-    overflow-x: hidden;
-    position: relative;
 }
 
-/* ======================================
-   FONDO ANIMADO RGB (RAINBOW) CON PARTICULAS
-====================================== */
-body::before {
-    content:"";
-    position: fixed;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    background: linear-gradient(120deg, var(--accent1), var(--accent2), var(--accent3), var(--accent1));
-    background-size: 600% 600%;
-    animation: gradientBG 20s ease infinite;
-    z-index: -2;
+/* Contenedores */
+.container,
+.page-container {
+    width: 90%;
+    margin: auto;
+    max-width: 1200px;
 }
 
-@keyframes gradientBG {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-
-/* ======================================
-   HEADER NEON Y NAV
-====================================== */
+/* ================================
+   HEADER Y NAVBAR NEON
+================================ */
 .site-header {
     padding: 25px 0;
-    background: rgba(20,20,28,0.6);
+    background: rgba(20, 20, 28, 0.6);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.1);
     position: sticky;
@@ -70,10 +55,9 @@ body::before {
 .site-title {
     font-size: 2rem;
     font-weight: 700;
-    background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+    background: linear-gradient(90deg, var(--rgb1), var(--rgb2), var(--rgb3));
     -webkit-background-clip: text;
     color: transparent;
-    text-shadow: 0 0 8px var(--accent1);
 }
 
 .main-nav ul {
@@ -85,264 +69,198 @@ body::before {
 .main-nav a {
     text-decoration: none;
     color: var(--text-secondary);
-    font-weight: 600;
-    position: relative;
     transition: var(--transition);
-}
-
-.main-nav a::after {
-    content: '';
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    left:0;
-    bottom:-4px;
-    background: var(--accent2);
-    transition: 0.3s ease;
-}
-
-.main-nav a:hover::after {
-    width: 100%;
+    font-weight: 600;
 }
 
 .main-nav a:hover {
-    color: var(--accent2);
-    text-shadow: 0 0 10px var(--accent2);
+    color: var(--rgb2);
+    text-shadow: 0 0 12px var(--rgb2);
 }
 
-/* ======================================
-   PAGE CONTAINER GRID
-====================================== */
-.page-container {
-    display: grid;
-    grid-template-columns: 2.3fr 1fr;
-    gap: 25px;
-    width: 90%;
-    margin: auto;
-    max-width: 1200px;
+/* ================================
+   ESTILO GENERAL DE CARDS
+================================ */
+.card {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
 }
 
-@media (max-width:900px){
-    .page-container { grid-template-columns: 1fr; }
+/* Glow RGB Animado */
+.card::before {
+    content: "";
+    position: absolute;
+    width: 160%;
+    height: 160%;
+    top: -30%;
+    left: -30%;
+    background: conic-gradient(
+        var(--rgb1),
+        var(--rgb2),
+        var(--rgb3),
+        var(--rgb1)
+    );
+    animation: spin 6s linear infinite;
+    opacity: 0.25;
+    filter: blur(60px);
 }
 
-/* ======================================
-   ARTICLE
-====================================== */
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* Hover suave */
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 30px rgba(120,120,255,0.25);
+}
+
+/* ================================
+   ARTÍCULO PRINCIPAL
+================================ */
+
 .article {
     background: var(--bg-secondary);
     padding: 30px;
     border-radius: var(--radius);
+    margin-bottom: 25px;
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.08);
-    backdrop-filter: blur(12px);
 }
 
 .article-title {
     font-size: 2.2rem;
     margin-bottom: 12px;
-    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    background: linear-gradient(90deg, var(--rgb1), var(--rgb2));
     -webkit-background-clip: text;
     color: transparent;
-    position: relative;
 }
 
-/* GLITCH ANIMADO EN TITULOS */
-.article-title::after {
-    content: attr(data-text);
-    position: absolute;
-    top:0;
-    left:2px;
-    color: var(--accent1);
-    opacity: 0.5;
-    z-index: -1;
-    animation: glitch 2s infinite;
-}
-
-@keyframes glitch{
-    0% { transform: translate(1px,-1px); }
-    20% { transform: translate(-1px,1px);}
-    40% { transform: translate(1px,1px);}
-    60% { transform: translate(-1px,-1px);}
-    80% { transform: translate(1px,-1px);}
-    100%{ transform: translate(0,0);}
-}
-
-/* ARTICLE META */
-.article-meta{
+.article-meta {
     color: var(--text-secondary);
     font-size: 0.95rem;
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
-/* IMAGEN HOLOGRÁFICA */
-.featured-image img{
-    width:100%;
+.featured-image img {
+    width: 100%;
     border-radius: var(--radius);
-    transition: 0.4s ease;
-    filter: drop-shadow(0 0 8px var(--accent1));
+    margin-bottom: 10px;
 }
 
-.featured-image img:hover{
-    transform: scale(1.03);
-    filter: drop-shadow(0 0 18px var(--accent2)) saturate(1.3);
+/* ================================
+   CONTENIDO DE ARTÍCULO
+================================ */
+
+.lead {
+    font-size: 1.2rem;
+    color: #e0e0ff;
 }
 
-/* ======================================
-   CARDS HOLOGRAFICAS
-====================================== */
-.card {
-    background: rgba(20,20,30,0.65);
-    backdrop-filter: blur(10px);
-    border-radius: var(--radius);
-    padding: 20px;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.08);
-    transition: 0.3s ease;
+h2 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    color: var(--rgb2);
 }
 
-.card::before{
-    content:"";
-    position: absolute;
-    inset:0;
-    background: conic-gradient(var(--accent1), var(--accent2), var(--accent3), var(--accent1));
-    opacity:0.1;
-    filter:blur(50px);
-    animation: spin 6s linear infinite;
-    z-index:0;
-}
-
-.card:hover{
-    box-shadow:
-        0 0 18px var(--accent1),
-        0 0 28px var(--accent2),
-        0 0 38px var(--accent3);
-    transform: translateY(-6px);
-}
-
-/* ======================================
-   LISTAS Y BLOQUES
-====================================== */
-.lead{ font-size:1.2rem; color:#e0e0ff; }
-
-h2{ margin:25px 0 10px; color: var(--accent2); }
-
-blockquote{
-    padding:15px 20px;
+blockquote {
+    padding: 15px 20px;
     background: rgba(255,255,255,0.05);
-    border-left: 4px solid var(--accent2);
+    border-left: 4px solid var(--rgb2);
     border-radius: var(--radius);
-    margin:25px 0;
+    margin: 25px 0;
     font-style: italic;
 }
 
-/* ======================================
-   SIDEBAR
-====================================== */
-.sidebar .widget{
-    margin-bottom:25px;
+/* ================================
+   SIDEBAR COMO CARDS
+================================ */
+
+.sidebar .widget {
+    margin-bottom: 25px;
+}
+
+.widget {
     background: var(--bg-secondary);
-    padding:20px;
+    padding: 20px;
     border-radius: var(--radius);
-    border:1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
-.widget-title{
-    font-size:1.4rem;
-    margin-bottom:15px;
-    background: linear-gradient(90deg,var(--accent3),var(--accent1));
-    -webkit-background-clip:text;
-    color:transparent;
+.widget-title {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, var(--rgb3), var(--rgb1));
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
-/* ======================================
-   AUTOR
-====================================== */
-.author-bio{text-align:center;}
-.author-avatar{
-    width:100px;
-    height:100px;
-    border-radius:50%;
-    border:2px solid var(--accent2);
-    margin-bottom:10px;
+.related-posts li {
+    list-style: none;
+    margin-bottom: 12px;
 }
 
-/* ======================================
-   FOOTER
-====================================== */
-.site-footer{
-    margin-top:40px;
-    padding:20px 0;
-    text-align:center;
+.related-posts h4 {
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.related-posts a {
     color: var(--text-secondary);
-    border-top:1px solid rgba(255,255,255,0.1);
+    text-decoration: none;
+    transition: var(--transition);
 }
 
-/* ======================================
-   HOVER LINKS RGB
-====================================== */
-a:hover{
-    text-shadow:0 0 10px var(--accent2),0 0 20px var(--accent3);
-    transform: scale(1.03);
+.related-posts a:hover {
+    color: var(--rgb3);
+    text-shadow: 0 0 8px var(--rgb3);
 }
 
-/* ======================================
-   ANIMACIONES GLOBALES
-====================================== */
-@keyframes spin{
-    100%{ transform: rotate(360deg);}
+/* ================================
+   AUTOR
+================================ */
+
+.author-bio {
+    text-align: center;
 }
 
-/* ======================================
-   CURSOR PERSONALIZADO
-====================================== */
-body { cursor:none; }
-.custom-cursor{
-    position: fixed;
-    width:14px;
-    height:14px;
-    border-radius:50%;
-    border:2px solid var(--accent2);
-    pointer-events:none;
-    transform: translate(-50%,-50%);
-    z-index:9999;
-    backdrop-filter: blur(3px);
-    transition:0.08s linear;
+.author-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid var(--rgb2);
+    margin-bottom: 10px;
 }
 
-/* ======================================
-   MODO OSCURO / CLARO
-====================================== */
-.theme-toggle{
-    position:fixed;
-    bottom:30px;
-    right:30px;
-    background: rgba(255,255,255,0.1);
-    border-radius:50%;
-    border:1px solid rgba(255,255,255,0.2);
-    width:55px;
-    height:55px;
-    display:grid;
-    place-items:center;
-    color:white;
-    cursor:pointer;
-    font-size:1.3rem;
-    backdrop-filter: blur(8px);
-    transition:0.3s ease;
+/* ================================
+   FOOTER
+================================ */
+
+.site-footer {
+    margin-top: 40px;
+    padding: 20px 0;
+    text-align: center;
+    color: var(--text-secondary);
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-.theme-toggle:hover{
-    transform: scale(1.1) rotate(10deg);
-    box-shadow:0 0 15px var(--accent3);
+/* ================================
+   LAYOUT RESPONSIVE
+================================ */
+
+.page-container {
+    display: grid;
+    grid-template-columns: 2.3fr 1fr;
+    gap: 25px;
 }
 
-/* LIGHT MODE */
-.light-mode{
-    --bg-main:#f2f2f6;
-    --bg-secondary:#ffffff;
-    --bg-card:#eaeaff;
-    --text-primary:#141414;
-    --text-secondary:#3a3a3a;
+@media (max-width: 900px) {
+    .page-container {
+        grid-template-columns: 1fr;
+    }
 }
