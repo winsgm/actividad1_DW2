@@ -693,3 +693,19 @@ body::before {
 }
 
 /* Card de autor */
+.fotito {
+    width: 150px;               /* Tamaño de la foto */
+    height: 150px;
+    border-radius: 50%;         /* Hace la imagen redonda */
+    object-fit: cover;          /* Ajusta la imagen sin deformarla */
+    border: 4px solid #00f0ff;  /* Borde futurista azul neón */
+    box-shadow: 0 0 15px #00f0ff, 0 0 30px #ff00f0, 0 0 45px #00ffea; /* Brillo neón */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación suave */
+    cursor: pointer;            /* Cambia el cursor al pasar sobre la imagen */
+}
+
+.fotito:hover {
+    transform: scale(1.1) rotate(5deg);  /* Efecto de agrandamiento y ligera rotación */
+    box-shadow: 0 0 25px #00f0ff, 0 0 50px #ff00f0, 0 0 75px #00ffea; /* Brillo intenso al pasar el mouse */
+}
+
