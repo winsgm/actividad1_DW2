@@ -1,0 +1,243 @@
+/* Reseteo y estilos generales - Versión mejorada */
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 25px;
+    background: linear-gradient(135deg, #f8f9ff 0%, #eef1f9 100%);
+    color: #2c3e50;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eaeaea;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+h2 {
+    color: #2c3e50;
+    border-left: 6px solid #3498db;
+    padding-left: 15px;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+    position: relative;
+    letter-spacing: -0.5px;
+}
+
+h2:before {
+    content: "▶";
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #3498db;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Imágenes con efectos mejorados */
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: brightness(0.95);
+}
+
+.responsive-img:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.05);
+}
+
+/* --------------------------------------------------
+   CASO 3: Lógica para Fondo Responsive - Versión mejorada
+   -------------------------------------------------- */
+
+.hero-background {
+    width: 100%;
+    height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    
+    /* Efecto de overlay para mejor legibilidad */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
+        url('https://placehold.co/400x400/4a6fa5/FFF?text=Mobile+Image');
+}
+
+.hero-background:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(52, 152, 219, 0.2), rgba(155, 89, 182, 0.2));
+    z-index: 1;
+    opacity: 0.3;
+    transition: opacity 0.4s ease;
+}
+
+.hero-background:hover:before {
+    opacity: 0.5;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    max-width: 90%;
+}
+
+.hero-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Tablet - Con efecto parallax sutil */
+@media (min-width: 600px) {
+    .hero-background {
+        height: 420px;
+        background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+            url('https://placehold.co/800x400/2980b9/FFF?text=Tablet+Image');
+    }
+    
+    .hero-title {
+        font-size: 2.8rem;
+    }
+}
+
+/* Desktop - Efectos más elaborados */
+@media (min-width: 1024px) {
+    .hero-background {
+        height: 500px;
+        background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
+            url('https://placehold.co/1200x400/1f618d/FFF?text=Desktop+Image');
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+        animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.3rem;
+        animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+}
+
+/* Animación para títulos */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Para pantallas retina - con mejor visualización */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-background {
+        border: none;
+        position: relative;
+    }
+    
+    .hero-background:after {
+        content: '✨ HD Display';
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(5px);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        z-index: 3;
+    }
+}
+
+/* Ajuste para móviles pequeños */
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+    
+    .container {
+        padding: 20px 15px;
+    }
+    
+    .hero-background {
+        height: 280px;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+}
+
+/* Efecto de brillo sutil en botones/interactivos */
+button, 
+a.button-like {
+    transition: all 0.3s ease;
+}
+
+button:hover, 
+a.button-like:hover {
+    filter: brightness(1.1);
+}
+
+/* Estilo para enlaces dentro del contenido */
+.container a:not(.button-like) {
+    color: #3498db;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(52, 152, 219, 0.3);
+    padding-bottom: 2px;
+    transition: all 0.2s ease;
+}
+
+.container a:not(.button-like):hover {
+    border-bottom-color: #3498db;
+    color: #2980b9;
+}
