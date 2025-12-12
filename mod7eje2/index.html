@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theme Switcher</title>
+    <title>Theme Switcher - Winston Garrido</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -13,23 +14,76 @@
             <input type="checkbox" id="checkbox" />
             <div class="slider round"></div>
         </label>
-        <span>Cambiar Tema</span>
+        <span>Modo Oscuro</span>
     </div>
 
     <div class="card">
+        <!-- Partículas flotantes -->
+        <div class="floating-particle"></div>
+        <div class="floating-particle"></div>
+        <div class="floating-particle"></div>
+        
+        <!-- Confetti elements -->
+        <div class="confetti" style="top: 10%; left: 20%;"></div>
+        <div class="confetti" style="top: 20%; left: 80%;"></div>
+        <div class="confetti" style="top: 30%; left: 40%;"></div>
+        <div class="confetti" style="top: 40%; left: 60%;"></div>
+        <div class="confetti" style="top: 50%; left: 10%;"></div>
+        
         <div class="avatar-container">
-            <img src="https://i.pravatar.cc/150?img=32" alt="Jane Doe" class="avatar">
+            <img src="https://w7.pngwing.com/pngs/259/926/png-transparent-cat-in-suit.png" alt="Winston Garrido" class="avatar">
         </div>
-        <h2>Jane Doe</h2>
-        <p class="role">Frontend Developer</p>
-        <p class="desc">Enthusiastic about clean code and user-centric designs.</p>
+        <h2>Winston Garrido</h2>
+        <p class="role">Full Stack Developer</p>
+        <p class="desc">Apasionado por crear experiencias digitales excepcionales con código limpio y diseño innovador.</p>
         
         <div class="buttons">
-            <button class="btn btn-outline">Follow</button>
-            <button class="btn btn-outline">Message</button>
+            <button class="btn btn-outline">Conectar</button>
+            <button class="btn btn-outline">Proyectos</button>
         </div>
     </div>
 
     <script src="app.js"></script>
+    
+    <script>
+    // Efecto de partículas adicional
+    document.addEventListener('DOMContentLoaded', function() {
+        // Crear más partículas
+        for (let i = 0; i < 5; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'floating-particle';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            particle.style.animationDuration = `${20 + Math.random() * 20}s`;
+            particle.style.background = `linear-gradient(135deg, 
+                hsl(${Math.random() * 360}, 100%, 65%), 
+                hsl(${Math.random() * 360}, 100%, 65%))`;
+            document.body.appendChild(particle);
+        }
+        
+        // Efecto de confetti al hacer hover
+        const card = document.querySelector('.card');
+        card.addEventListener('mouseenter', function() {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = `${10 + Math.random() * 80}%`;
+                    confetti.style.top = `${10 + Math.random() * 30}%`;
+                    confetti.style.background = `linear-gradient(135deg, 
+                        hsl(${Math.random() * 360}, 100%, 65%), 
+                        hsl(${Math.random() * 360}, 100%, 65%))`;
+                    confetti.style.width = `${5 + Math.random() * 10}px`;
+                    confetti.style.height = `${5 + Math.random() * 10}px`;
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                    card.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 1000);
+                }, i * 100);
+            }
+        });
+    });
+    </script>
 </body>
 </html>
