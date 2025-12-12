@@ -1,0 +1,155 @@
+/* Hero Section mejorada */
+.hero-section {
+    background: linear-gradient(135deg, 
+        #667eea 0%, 
+        #764ba2 35%, 
+        #9f7aea 70%, 
+        #d6bcfa 100%);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+    z-index: 0;
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+    position: relative;
+    z-index: 1;
+}
+
+/* Tarjetas con efectos mejorados */
+.card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Efecto de brillo en las tarjetas */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.1), 
+        transparent);
+    transition: left 0.7s ease;
+}
+
+.card:hover::after {
+    left: 100%;
+}
+
+/* Footer con efectos mejorados */
+footer {
+    background: linear-gradient(to right, #2d3748, #4a5568);
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #667eea, #764ba2);
+}
+
+footer a {
+    transition: all 0.3s ease;
+    position: relative;
+    text-decoration: none;
+}
+
+footer a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    transition: width 0.3s ease;
+}
+
+footer a:hover {
+    opacity: 0.9;
+    color: #d6bcfa !important;
+}
+
+footer a:hover::after {
+    width: 100%;
+}
+
+/* Animaciones */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Efecto de partículas sutiles */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.05) 1px, transparent 2px),
+        radial-gradient(circle at 90% 40%, rgba(255,255,255,0.04) 1px, transparent 2px),
+        radial-gradient(circle at 50% 80%, rgba(255,255,255,0.03) 1px, transparent 2px);
+    background-size: 200px 200px, 300px 300px, 250px 250px;
+    z-index: 0;
+    animation: particleFloat 20s linear infinite;
+}
+
+@keyframes particleFloat {
+    0% {
+        background-position: 0 0, 100px 100px, 200px 200px;
+    }
+    100% {
+        background-position: 200px 200px, 300px 300px, 400px 400px;
+    }
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .card:hover {
+        transform: translateY(-8px) scale(1.01);
+    }
+    
+    .hero-section {
+        animation: gradientAnimation 20s ease infinite;
+    }
+}
