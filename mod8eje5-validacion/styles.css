@@ -1,0 +1,547 @@
+/* 🌈 CSS PERRO CON EFECTOS EPICOS Y COLORES SUAVES 🌈 */
+
+/* ===== RESET Y BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, 
+        #f0f7ff 0%, 
+        #f8f0ff 25%, 
+        #fff0f8 50%, 
+        #fff8f0 75%, 
+        #f0fff8 100%);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+    color: #333344;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Efecto de partículas flotantes */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(180, 220, 255, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 90% 40%, rgba(255, 180, 220, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 40% 80%, rgba(220, 255, 180, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 70% 30%, rgba(255, 220, 180, 0.3) 2px, transparent 2px);
+    background-size: 300px 300px;
+    z-index: -1;
+    animation: floatParticles 20s linear infinite;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+}
+
+@keyframes floatParticles {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-100px) rotate(360deg); }
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.container {
+    width: 100%;
+    max-width: 500px;
+    perspective: 1000px;
+}
+
+.form-wrapper {
+    background: linear-gradient(145deg, 
+        rgba(255, 255, 255, 0.95),
+        rgba(255, 255, 255, 0.85));
+    backdrop-filter: blur(15px);
+    border-radius: 30px;
+    padding: 40px 35px;
+    box-shadow: 
+        0 25px 50px -12px rgba(100, 100, 255, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.8),
+        0 0 60px rgba(180, 220, 255, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.6);
+    transform-style: preserve-3d;
+    animation: formFloat 6s ease-in-out infinite;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+@keyframes formFloat {
+    0%, 100% { 
+        transform: translateY(0) rotateX(2deg); 
+        box-shadow: 
+            0 25px 50px -12px rgba(100, 100, 255, 0.1),
+            0 0 0 1px rgba(255, 255, 255, 0.8),
+            0 0 60px rgba(180, 220, 255, 0.4);
+    }
+    50% { 
+        transform: translateY(-10px) rotateX(-1deg); 
+        box-shadow: 
+            0 35px 60px -15px rgba(100, 100, 255, 0.2),
+            0 0 0 1px rgba(255, 255, 255, 0.9),
+            0 0 80px rgba(180, 220, 255, 0.6);
+    }
+}
+
+/* ===== TÍTULO ===== */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, 
+        #7CB9E8, 
+        #DDA0DD, 
+        #98FB98, 
+        #FFB6C1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 300% 300%;
+    animation: titleGradient 8s ease infinite;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+@keyframes titleGradient {
+    0%, 100% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+}
+
+.subtitle {
+    text-align: center;
+    color: #666699;
+    margin-bottom: 35px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.subtitle::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        rgba(124, 185, 232, 0.5),
+        rgba(221, 160, 221, 0.5),
+        rgba(152, 251, 152, 0.5));
+    border-radius: 2px;
+}
+
+/* ===== GRUPOS DE FORMULARIO ===== */
+.form-group {
+    margin-bottom: 28px;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #555577;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    padding-left: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+    width: 100%;
+    padding: 18px 20px;
+    border: 2px solid #E6E6FA;
+    border-radius: 15px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: #444466;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 
+        inset 0 2px 10px rgba(0, 0, 0, 0.05),
+        0 5px 20px rgba(230, 230, 250, 0.3);
+}
+
+input:focus {
+    outline: none;
+    border-color: #7CB9E8;
+    box-shadow: 
+        0 0 0 4px rgba(124, 185, 232, 0.2),
+        0 10px 30px rgba(124, 185, 232, 0.3),
+        inset 0 2px 10px rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+input:valid:not(:placeholder-shown):not(:focus) {
+    border-color: #98FB98;
+    background: rgba(152, 251, 152, 0.05);
+}
+
+/* ===== ICONOS DE ÉXITO ===== */
+.success-icon {
+    position: absolute;
+    right: 20px;
+    top: 50px;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #98FB98, #90EE90);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(152, 251, 152, 0.4);
+}
+
+input:valid:not(:placeholder-shown) + .error-message + .success-icon {
+    opacity: 1;
+    transform: scale(1);
+    animation: iconPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes iconPop {
+    0% { transform: scale(0) rotate(-180deg); }
+    70% { transform: scale(1.2) rotate(10deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+/* ===== MENSAJES DE ERROR ===== */
+.error-message {
+    display: block;
+    color: #FF6B8B;
+    font-size: 0.85rem;
+    margin-top: 8px;
+    padding-left: 5px;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+input:invalid:not(:placeholder-shown):not(:focus) + .error-message {
+    opacity: 1;
+    transform: translateY(0);
+    animation: shakeError 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes shakeError {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+    20%, 40%, 60%, 80% { transform: translateX(3px); }
+}
+
+/* ===== REQUIREMENTS DE CONTRASEÑA ===== */
+.password-requirements {
+    margin-top: 15px;
+    padding: 20px;
+    background: linear-gradient(135deg, 
+        rgba(240, 248, 255, 0.8),
+        rgba(245, 245, 255, 0.8));
+    border-radius: 12px;
+    border-left: 4px solid #7CB9E8;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.requirement {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #666699;
+    transition: all 0.3s ease;
+}
+
+.requirement.met {
+    color: #5D9C59;
+    font-weight: 600;
+}
+
+.requirement.met .req-icon {
+    background: linear-gradient(135deg, #98FB98, #5D9C59);
+    transform: scale(1.2);
+}
+
+.req-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #E6E6FA;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    font-size: 0.7rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== CHECKBOX ===== */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.checkbox-group:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateX(5px);
+}
+
+.checkbox-group input[type="checkbox"] {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #DDA0DD;
+    border-radius: 6px;
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+    background: linear-gradient(135deg, #DDA0DD, #EE82EE);
+    border-color: #DDA0DD;
+}
+
+.checkbox-group input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: checkPop 0.3s ease;
+}
+
+@keyframes checkPop {
+    0% { transform: translate(-50%, -50%) scale(0); }
+    70% { transform: translate(-50%, -50%) scale(1.3); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ===== BOTÓN DE ENVÍO ===== */
+.submit-btn {
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(135deg, 
+        #7CB9E8 0%, 
+        #DDA0DD 33%, 
+        #98FB98 66%, 
+        #FFB6C1 100%);
+    background-size: 300% 300%;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 10px 30px rgba(124, 185, 232, 0.4),
+        0 0 20px rgba(221, 160, 221, 0.3);
+    letter-spacing: 1px;
+    animation: buttonGradient 8s ease infinite;
+}
+
+@keyframes buttonGradient {
+    0%, 100% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+}
+
+.submit-btn:hover:not(:disabled) {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 
+        0 20px 40px rgba(124, 185, 232, 0.6),
+        0 0 40px rgba(221, 160, 221, 0.5),
+        0 0 60px rgba(152, 251, 152, 0.4);
+    letter-spacing: 2px;
+}
+
+.submit-btn:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+    transition: all 0.1s ease;
+}
+
+.submit-btn:disabled {
+    background: linear-gradient(135deg, #CCCCDD, #DDDDEE);
+    cursor: not-allowed;
+    opacity: 0.7;
+    animation: none;
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    transition: left 0.7s ease;
+}
+
+.submit-btn:hover:not(:disabled)::before {
+    left: 100%;
+}
+
+/* ===== RESUMEN DEL FORMULARIO ===== */
+.form-summary {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, 
+        rgba(152, 251, 152, 0.1),
+        rgba(124, 185, 232, 0.1));
+    border: 2px dashed rgba(124, 185, 232, 0.3);
+    text-align: center;
+    font-weight: 600;
+    color: #555577;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 25px rgba(124, 185, 232, 0.1);
+}
+
+.form-summary.show {
+    opacity: 1;
+    transform: translateY(0);
+    animation: summaryPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes summaryPop {
+    0% { 
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    100% { 
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ===== EFECTOS ESPECIALES DE VALIDACIÓN ===== */
+.form-group.valid label {
+    color: #5D9C59;
+    transform: translateX(5px);
+}
+
+.form-group.invalid label {
+    color: #FF6B8B;
+    animation: labelShake 0.5s ease;
+}
+
+@keyframes labelShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    .form-wrapper {
+        padding: 30px 25px;
+        margin: 0 15px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"] {
+        padding: 16px;
+    }
+    
+    .submit-btn {
+        padding: 18px;
+    }
+}
+
+/* ===== EFECTO DE GLOW DINÁMICO ===== */
+@keyframes dynamicGlow {
+    0% {
+        box-shadow: 
+            0 25px 50px -12px rgba(100, 100, 255, 0.1),
+            0 0 0 1px rgba(255, 255, 255, 0.8),
+            0 0 60px rgba(180, 220, 255, 0.4),
+            inset 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+    33% {
+        box-shadow: 
+            0 25px 50px -12px rgba(221, 160, 221, 0.1),
+            0 0 0 1px rgba(255, 255, 255, 0.8),
+            0 0 60px rgba(221, 160, 221, 0.4),
+            inset 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+    66% {
+        box-shadow: 
+            0 25px 50px -12px rgba(152, 251, 152, 0.1),
+            0 0 0 1px rgba(255, 255, 255, 0.8),
+            0 0 60px rgba(152, 251, 152, 0.4),
+            inset 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+    100% {
+        box-shadow: 
+            0 25px 50px -12px rgba(100, 100, 255, 0.1),
+            0 0 0 1px rgba(255, 255, 255, 0.8),
+            0 0 60px rgba(180, 220, 255, 0.4),
+            inset 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+}
+
+.form-wrapper {
+    animation: formFloat 6s ease-in-out infinite, dynamicGlow 12s ease-in-out infinite;
+}
