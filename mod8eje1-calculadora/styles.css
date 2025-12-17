@@ -1,0 +1,288 @@
+/* Reset y estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+}
+
+/* Contenedor principal de la calculadora */
+.calculator {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    max-width: 900px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@media (min-width: 768px) {
+    .calculator {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Display de la calculadora */
+.display {
+    grid-column: 1 / -1;
+    background: #1a1a2e;
+    border-radius: 15px;
+    padding: 25px 20px;
+    text-align: right;
+    margin-bottom: 10px;
+    border: 2px solid #2d3047;
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.previous-operand {
+    min-height: 32px;
+    font-size: 1.2rem;
+    color: #8a8d9b;
+    margin-bottom: 5px;
+    word-break: break-all;
+}
+
+.current-operand {
+    min-height: 60px;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    word-break: break-all;
+    line-height: 1;
+}
+
+/* Grid de botones */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    grid-column: 1;
+}
+
+/* Estilos de botones generales */
+.btn {
+    border: none;
+    border-radius: 12px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 20px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70px;
+    user-select: none;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn:hover {
+    filter: brightness(110%);
+}
+
+/* Botones numéricos */
+.btn-number {
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+    color: #333;
+    box-shadow: 3px 3px 6px #d1d1d1, -3px -3px 6px #ffffff;
+}
+
+.btn-number:hover {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+}
+
+.btn-number:active {
+    box-shadow: inset 3px 3px 6px #d1d1d1, inset -3px -3px 6px #ffffff;
+}
+
+/* Botones de operadores */
+.btn-operator {
+    background: linear-gradient(145deg, #ff9500, #ffaa33);
+    color: white;
+    font-size: 1.6rem;
+    box-shadow: 3px 3px 6px #d1d1d1;
+}
+
+.btn-operator:hover {
+    background: linear-gradient(145deg, #ffaa33, #ff9500);
+}
+
+/* Botones especiales */
+.btn-clear {
+    background: linear-gradient(145deg, #ff3b30, #ff6961);
+    color: white;
+    grid-column: span 2;
+}
+
+.btn-delete {
+    background: linear-gradient(145deg, #5856d6, #7876ff);
+    color: white;
+}
+
+.btn-equals {
+    background: linear-gradient(145deg, #34c759, #4cd964);
+    color: white;
+    font-size: 1.6rem;
+}
+
+/* Botones que ocupan dos espacios */
+.span-2 {
+    grid-column: span 2;
+}
+
+/* Panel de historial */
+.history {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 25px;
+    border: 2px solid #e9ecef;
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.history h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #667eea;
+    text-align: center;
+}
+
+.history-list {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 350px;
+    margin-bottom: 20px;
+    padding-right: 10px;
+}
+
+.history-item {
+    background: white;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    font-size: 1rem;
+    color: #555;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.history-item:hover {
+    transform: translateX(5px);
+    background: #f0f2ff;
+}
+
+/* Botón limpiar historial */
+.btn-clear-history {
+    background: linear-gradient(145deg, #8e8e93, #a2a2a7);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: auto;
+}
+
+.btn-clear-history:hover {
+    background: linear-gradient(145deg, #a2a2a7, #8e8e93);
+    transform: translateY(-2px);
+}
+
+.btn-clear-history:active {
+    transform: translateY(0);
+}
+
+/* Scrollbar personalizado */
+.history-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+}
+
+.history-list::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
+}
+
+/* Responsive para móviles */
+@media (max-width: 767px) {
+    .calculator {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+    
+    .history {
+        grid-column: 1;
+        margin-top: 20px;
+    }
+    
+    .display {
+        padding: 20px 15px;
+    }
+    
+    .current-operand {
+        font-size: 2.2rem;
+    }
+    
+    .btn {
+        padding: 15px 5px;
+        min-height: 60px;
+        font-size: 1.2rem;
+    }
+    
+    .btn-operator, .btn-equals {
+        font-size: 1.4rem;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calculator {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Efecto de focus para accesibilidad */
+.btn:focus {
+    outline: 3px solid #667eea;
+    outline-offset: 2px;
+}
