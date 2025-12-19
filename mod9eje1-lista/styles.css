@@ -1,0 +1,746 @@
+/* Reset futurista */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', 'Exo 2', 'Rajdhani', sans-serif;
+}
+
+/* Variables de diseño futurista */
+:root {
+    --neon-blue: #00f3ff;
+    --neon-purple: #9d00ff;
+    --neon-pink: #ff00ff;
+    --neon-green: #00ff9d;
+    --neon-red: #ff0055;
+    --cyber-blue: #0066ff;
+    --dark-bg: #0a0e17;
+    --darker-bg: #050811;
+    --panel-bg: rgba(16, 22, 36, 0.95);
+    --grid-color: rgba(0, 243, 255, 0.1);
+    --text-glow: 0 0 10px currentColor;
+    --box-glow: 0 0 20px var(--neon-blue);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease;
+}
+
+/* Estilos del cuerpo con fondo futurista */
+body {
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(0, 99, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(157, 0, 255, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #e0f7ff;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Efecto de partículas flotantes */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, var(--neon-blue) 50%, transparent 50%),
+        radial-gradient(2px 2px at 40px 70px, var(--neon-purple) 50%, transparent 50%),
+        radial-gradient(1px 1px at 80px 40px, var(--neon-pink) 50%, transparent 50%),
+        radial-gradient(1px 1px at 60px 80px, var(--neon-green) 50%, transparent 50%);
+    background-size: 100px 100px;
+    opacity: 0.3;
+    animation: floatParticles 20s linear infinite;
+    z-index: -1;
+}
+
+@keyframes floatParticles {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100px); }
+}
+
+/* Contenedor principal con efecto holográfico */
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        var(--neon-blue), 
+        var(--neon-purple), 
+        var(--neon-pink), 
+        var(--neon-green)
+    );
+    border-radius: 16px;
+    z-index: -1;
+    animation: hologramBorder 3s linear infinite;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+@keyframes hologramBorder {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 0.9; }
+}
+
+/* Tarjeta futurista con efecto de panel de control */
+.card {
+    background: var(--panel-bg);
+    border-radius: 14px;
+    padding: 2.8rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    box-shadow: 
+        0 0 30px rgba(0, 243, 255, 0.2),
+        inset 0 0 30px rgba(0, 243, 255, 0.05);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 0 40px rgba(0, 243, 255, 0.3),
+        inset 0 0 40px rgba(0, 243, 255, 0.1);
+}
+
+/* Efecto de escaneo horizontal */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--neon-blue), 
+        var(--neon-purple), 
+        transparent
+    );
+    animation: scanLine 4s linear infinite;
+}
+
+@keyframes scanLine {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+/* Título con efecto neón */
+h1 {
+    color: var(--neon-blue);
+    font-size: 2.8rem;
+    margin-bottom: 0.8rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 
+        0 0 10px var(--neon-blue),
+        0 0 20px var(--neon-blue),
+        0 0 30px rgba(0, 243, 255, 0.5);
+    font-weight: 700;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+h1::before, h1::after {
+    content: '◈';
+    color: var(--neon-purple);
+    font-size: 1.8rem;
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+/* Subtítulo */
+.subtitle {
+    color: #a0c8ff;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-shadow: var(--text-glow);
+}
+
+/* Sección de entrada */
+.input-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.input-section::before {
+    content: 'INPUT';
+    position: absolute;
+    top: -25px;
+    left: 0;
+    color: var(--neon-green);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+#itemInput {
+    flex: 1;
+    min-width: 250px;
+    padding: 18px 22px;
+    background: rgba(10, 20, 40, 0.7);
+    border: 2px solid rgba(0, 243, 255, 0.3);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    outline: none;
+    color: #fff;
+    letter-spacing: 1px;
+    box-shadow: 
+        inset 0 0 10px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(0, 243, 255, 0.1);
+}
+
+#itemInput:focus {
+    border-color: var(--neon-blue);
+    box-shadow: 
+        inset 0 0 15px rgba(0, 243, 255, 0.2),
+        0 0 20px rgba(0, 243, 255, 0.3);
+    animation: inputPulse 1s infinite alternate;
+}
+
+@keyframes inputPulse {
+    from { box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); }
+    to { box-shadow: 0 0 20px rgba(0, 243, 255, 0.5); }
+}
+
+#itemInput::placeholder {
+    color: rgba(160, 200, 255, 0.5);
+    letter-spacing: 1px;
+}
+
+/* Botones generales */
+.btn {
+    padding: 18px 30px;
+    background: linear-gradient(135deg, 
+        var(--neon-blue) 0%, 
+        var(--cyber-blue) 100%);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 102, 255, 0.4);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent
+    );
+    transition: var(--transition);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 25px rgba(0, 102, 255, 0.6);
+}
+
+.btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Botón de añadir */
+.btn-add {
+    background: linear-gradient(135deg, 
+        var(--neon-green) 0%, 
+        var(--neon-blue) 100%);
+    box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+}
+
+.btn-add:hover {
+    box-shadow: 0 0 25px rgba(0, 255, 157, 0.6);
+}
+
+/* Panel de estadísticas */
+.stats {
+    background: rgba(10, 20, 40, 0.7);
+    padding: 18px 25px;
+    border-radius: 8px;
+    margin-bottom: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #a0c8ff;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.stats::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 243, 255, 0.1), 
+        transparent
+    );
+    animation: statsGlow 3s infinite;
+}
+
+@keyframes statsGlow {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}
+
+.stats strong {
+    color: var(--neon-green);
+    font-size: 1.5rem;
+    margin-left: 10px;
+    text-shadow: 0 0 10px var(--neon-green);
+}
+
+/* Lista de items con efecto de terminal */
+.item-list {
+    list-style: none;
+    margin-bottom: 3rem;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(5, 10, 20, 0.7);
+    padding: 20px;
+}
+
+/* Scrollbar futurista */
+.item-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.item-list::-webkit-scrollbar-track {
+    background: rgba(10, 20, 40, 0.5);
+    border-radius: 10px;
+}
+
+.item-list::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, 
+        var(--neon-blue), 
+        var(--neon-purple)
+    );
+    border-radius: 10px;
+    border: 2px solid rgba(5, 10, 20, 0.7);
+}
+
+.item-list::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, 
+        var(--neon-purple), 
+        var(--neon-pink)
+    );
+}
+
+/* Items individuales con efecto de tarjeta de datos */
+.item-list li {
+    background: rgba(20, 30, 50, 0.8);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: var(--transition);
+    animation: itemAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes itemAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+.item-list li::before {
+    content: '▶';
+    position: absolute;
+    left: 10px;
+    color: var(--neon-green);
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.item-list li:hover::before {
+    opacity: 1;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.item-list li:hover {
+    transform: translateX(10px);
+    border-color: var(--neon-blue);
+    box-shadow: 
+        0 0 20px rgba(0, 243, 255, 0.3),
+        inset 0 0 20px rgba(0, 243, 255, 0.1);
+}
+
+.item-text {
+    flex: 1;
+    font-size: 1.2rem;
+    color: #e0f7ff;
+    word-break: break-word;
+    padding-right: 20px;
+    letter-spacing: 0.5px;
+    font-weight: 300;
+}
+
+/* Controles de item */
+.item-controls {
+    display: flex;
+    gap: 12px;
+}
+
+/* Botones de editar y eliminar */
+.btn-edit, .btn-delete {
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+.btn-edit {
+    background: rgba(0, 243, 255, 0.1);
+    color: var(--neon-blue);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+.btn-edit:hover {
+    background: var(--neon-blue);
+    color: var(--dark-bg);
+    box-shadow: 0 0 20px var(--neon-blue);
+}
+
+.btn-delete {
+    background: rgba(255, 0, 85, 0.1);
+    color: var(--neon-red);
+    border-color: var(--neon-red);
+    box-shadow: 0 0 10px rgba(255, 0, 85, 0.2);
+}
+
+.btn-delete:hover {
+    background: var(--neon-red);
+    color: white;
+    box-shadow: 0 0 20px var(--neon-red);
+}
+
+/* Botón de limpiar todo */
+.actions {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.actions::before {
+    content: 'CONTROL';
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--neon-red);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, 
+        var(--neon-red) 0%, 
+        #ff2a6d 100%);
+    color: white;
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+}
+
+.btn-danger:hover {
+    box-shadow: 0 0 25px rgba(255, 0, 85, 0.6);
+}
+
+/* Estado vacío de la lista */
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: rgba(160, 200, 255, 0.5);
+}
+
+.empty-state::before {
+    content: '⚡';
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 20px;
+    color: var(--neon-purple);
+    animation: pulse 2s infinite;
+}
+
+.empty-state p {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+/* Mensaje de confirmación holográfico */
+.confirmation-message {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(20, 30, 50, 0.95);
+    color: var(--neon-green);
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 157, 0.3),
+        inset 0 0 20px rgba(0, 255, 157, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: hologramAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    border: 1px solid var(--neon-green);
+    backdrop-filter: blur(10px);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.confirmation-message::before {
+    content: '✓';
+    font-size: 1.5rem;
+    color: var(--neon-green);
+    animation: successPulse 1s infinite;
+}
+
+@keyframes hologramAppear {
+    from {
+        transform: translateX(100%) rotateY(90deg);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0) rotateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes successPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Estados de edición */
+.editing {
+    background: rgba(0, 255, 157, 0.1);
+    border-color: var(--neon-green);
+    box-shadow: 
+        0 0 25px rgba(0, 255, 157, 0.2),
+        inset 0 0 25px rgba(0, 255, 157, 0.05);
+}
+
+.edit-input {
+    flex: 1;
+    padding: 12px 18px;
+    background: rgba(5, 15, 30, 0.9);
+    border: 2px solid var(--neon-green);
+    border-radius: 6px;
+    font-size: 1.2rem;
+    margin-right: 15px;
+    outline: none;
+    color: white;
+    letter-spacing: 1px;
+    box-shadow: 
+        inset 0 0 15px rgba(0, 255, 157, 0.2),
+        0 0 20px rgba(0, 255, 157, 0.3);
+}
+
+/* Efectos de eliminación */
+.item-list li.removing {
+    animation: cyberDisappear 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes cyberDisappear {
+    0% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(50px) scale(0.8);
+        filter: blur(10px);
+    }
+}
+
+/* Responsividad futurista */
+@media (max-width: 768px) {
+    .card {
+        padding: 2rem;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    h1::before, h1::after {
+        font-size: 1.5rem;
+    }
+    
+    .input-section {
+        flex-direction: column;
+    }
+    
+    #itemInput {
+        min-width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .item-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    
+    .item-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .item-list {
+        max-height: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
+    
+    .card {
+        padding: 1.8rem;
+    }
+    
+    .btn-edit, .btn-delete {
+        flex: 1;
+        justify-content: center;
+        padding: 10px 15px;
+    }
+    
+    .item-text {
+        font-size: 1.1rem;
+    }
+}
+
+/* Efecto de parpadeo para elementos vacíos */
+.empty-list::after {
+    content: '_';
+    animation: blinkCursor 1s infinite;
+    color: var(--neon-blue);
+    font-weight: bold;
+}
+
+@keyframes blinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Iconos futuristas */
+.btn::after {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+.btn-add::after {
+    content: ' ➤';
+}
+
+.btn-edit::after {
+    content: ' ✎';
+}
+
+.btn-delete::after {
+    content: ' ✕';
+}
+
+.btn-danger::after {
+    content: ' ⚠';
+}
